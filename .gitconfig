@@ -1,0 +1,25 @@
+[push]
+	default = current
+[rerere]
+	enabled = true
+[core]
+	precomposeunicode = true
+	excludesfile = /Users/tj_nicolaides/.gitignore_global
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[alias]
+        prom = "!git fetch origin master && git rebase origin/master && git update-ref refs/heads/master origin/master"
+        punch = push --force-with-lease
+
+[user]
+	name = TJ Nicolaides
+	email = tj.nicolaides@airbnb.com
+[checkout]
+	workers = 0
+[maintenance]
+	repo = /Users/tj_nicolaides/airlab/repos/apps
+[init]
+	defaultBranch = main
