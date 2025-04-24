@@ -10,7 +10,10 @@ RPROMPT=\$vcs_info_msg_0_
 zstyle ':vcs_info:git:*' formats '%F{141} %b'
 zstyle ':vcs_info:*' enable git
 
-cd ~/airlab/repos
+# cd to airlab repos dir if it exists
+if [ -e ~/airlab/repos ]; then
+  cd ~/airlab/repos
+fi
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
