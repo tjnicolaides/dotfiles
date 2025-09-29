@@ -52,3 +52,9 @@ export OPT_OUT_LINT_PRE_PUSH_HOOK=true
 export ANDROID_HOME=${HOME}/Library/Android/sdk
 export PATH=${PATH}:${ANDROID_HOME}/tools
 export PATH=${PATH}:${ANDROID_HOME}/platform-tools
+
+max_files_soft_limit=$(launchctl limit maxfiles | awk 'NR==1 { print $2 }')
+if (( max_files_soft_limit <= 1000000 )); then
+  echo "Max files soft limit is too low. Running sudo launchctl limit maxfiles 1048576. Please type your Laptop password to run this command as root is required"
+  sudo launchctl limit maxfiles 1048576
+fi
