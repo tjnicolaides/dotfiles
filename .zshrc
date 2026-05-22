@@ -1,3 +1,6 @@
+# Load secrets (API keys etc) — file is not tracked in git
+[ -r "$HOME/.secrets" ] && source "$HOME/.secrets"
+
 # Z-Shell configuration file that runs for each interactive shell session
 # Custom prompt configuration with color formatting and status indicators
 NEWLINE=$'\n'
@@ -58,3 +61,4 @@ if (( max_files_soft_limit <= 1000000 )); then
   echo "Max files soft limit is too low. Running sudo launchctl limit maxfiles 1048576. Please type your Laptop password to run this command as root is required"
   sudo launchctl limit maxfiles 1048576
 fi
+export PATH="$HOME/.local/bin:$PATH"
