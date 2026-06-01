@@ -1,5 +1,8 @@
-# Load secrets (API keys etc) — file is not tracked in git
-[ -r "$HOME/.secrets" ] && source "$HOME/.secrets"
+# Load secrets (API keys etc) — files are not tracked in git
+for _secret_file in ~/.secrets-*(N); do
+  [ -r "$_secret_file" ] && source "$_secret_file"
+done
+unset _secret_file
 
 # Z-Shell configuration file that runs for each interactive shell session
 # Custom prompt configuration with color formatting and status indicators

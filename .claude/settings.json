@@ -1,5 +1,7 @@
 {
-  "enabledPlugins": {},
+  "alwaysThinkingEnabled": false,
+  "effortLevel": "medium",
   "skipDangerousModePermissionPrompt": true,
-  "model": "opus"
+  "theme": "dark",
+  "skipAutoPermissionPrompt": true
 }
