@@ -1,0 +1,11 @@
+services:
+  homeassistant:
+    container_name: homeassistant
+    image: ghcr.io/home-assistant/home-assistant:stable
+    volumes:
+      - ./ha-config:/config
+      - /etc/localtime:/etc/localtime:ro
+    restart: unless-stopped
+    # HomeKit Bridge needs the host network for mDNS/Bonjour discovery.
+    # host networking is Linux-only; on Windows run this inside WSL2.
+    network_mode: host

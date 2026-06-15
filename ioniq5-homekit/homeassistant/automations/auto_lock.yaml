@@ -1,0 +1,26 @@
+# Auto-lock the Ioniq 5 once it has sat in the driveway, unlocked, long enough.
+# Paste into Home Assistant's automations and fix the ids marked TODO.
+#
+# Tradeoff: ccNC cars are only polled occasionally to spare the 12V battery, so
+# the `for:` timer reflects polled state, not real-time presence. Keep the
+# duration comfortably longer than your scan interval.
+
+- id: ioniq5_auto_lock_in_driveway
+  alias: Ioniq 5 - auto lock in driveway
+  trigger:
+    # TODO: entity id of the car's location tracker from kia_uvo
+    - platform: state
+      entity_id: device_tracker.ioniq_5_location
+      to: "home"            # TODO: set to your driveway zone name if not "home"
+      for:
+        minutes: 10         # LOCK_AFTER_MINUTES
+  condition:
+    # Only act if it is actually unlocked.
+    - condition: state
+      entity_id: lock.ioniq_5_door_lock   # TODO: car lock entity id
+      state: "unlocked"
+  action:
+    - service: lock.lock
+      target:
+        entity_id: lock.ioniq_5_door_lock # TODO: car lock entity id
+  mode: single
