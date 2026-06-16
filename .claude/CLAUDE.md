@@ -47,6 +47,7 @@
 - Use `nvm` to find a version of node to use.
 - Run `source ~/.zprofile` at the beginning of each session to access homebrew, jenv, python, nvm, and other utilities.
 - Use the branch name format tj-nicolaides--
+- Don't reply to comments from reviewers on Github unless specifically directed
 
 ## Available CLI Tools
 - Use `fd` instead of `find` for file discovery:
