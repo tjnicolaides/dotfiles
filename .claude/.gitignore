@@ -32,6 +32,9 @@ statsig/
 debug/
 settings.local.json
 
+# Personal skills (not for dotfiles)
+skills/a4re-*/
+
 # Always version these (explicit allowlist)
 !CLAUDE.md
 !settings.json
