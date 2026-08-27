@@ -1,4 +1,4 @@
-[A4RE writing standard loaded]
+[Team writing standard loaded]
 
 These rules apply to everything you write from here on, with no separate editing pass and
 no reminder needed: PR titles and bodies, commit messages, code and config comments, docs,
