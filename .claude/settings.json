@@ -1,7 +1,42 @@
 {
+  "enabledPlugins": {
+    "a4re@guest-and-host-org": true,
+    "data-infra@infrastructure-org": true,
+    "writing@ai-writing": true
+  },
+  "extraKnownMarketplaces": {
+    "ai-writing": {
+      "source": {
+        "source": "git",
+        "url": "git@git.musta.ch:lucas/ai-writing"
+      }
+    }
+  },
   "alwaysThinkingEnabled": false,
-  "effortLevel": "medium",
+  "effortLevel": "xhigh",
+  "modelSettings": {
+    "claude-sonnet-5": {
+      "effortLevel": "xhigh"
+    },
+    "claude-opus-5": {
+      "effortLevel": "high"
+    }
+  },
+  "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true,
   "theme": "dark",
-  "skipAutoPermissionPrompt": true
+  "skipAutoPermissionPrompt": true,
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cat \"$HOME/.claude/writing-rules.md\" 2>/dev/null || true",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
 }
