@@ -22,6 +22,7 @@ Base: tj-review-voice
 - No flowery language, excessive adjectives, or corporate buzzwords.
 - No generic praise or generic statements that could apply to anyone/anything — ground claims in specifics.
 - Use parentheses for inline clarifications, not em dashes, in prose (per tj-review-voice base) — Slack messages are the exception; they use em dashes freely for asides.
+- Substantiate claims with links instead of folding detail into prose: Sourcegraph/GHE code pointers, Slack threads, agent session links, Superset/data queries, docs. Give the reader a click-through, don't restate what the link already shows.
 
 ## Words to cut
 
