@@ -1,7 +1,5 @@
 {
   "enabledPlugins": {
-    "a4re@guest-and-host-org": true,
-    "data-infra@infrastructure-org": true,
     "writing@ai-writing": true
   },
   "extraKnownMarketplaces": {
