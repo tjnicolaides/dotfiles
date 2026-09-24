@@ -19,9 +19,17 @@ RPROMPT=\$vcs_info_msg_0_
 zstyle ':vcs_info:git:*' formats '%F{141} %b'
 zstyle ':vcs_info:*' enable git
 
-# Workspace initialization - automatically cd to work directory if it exists
-if [ -e ~/airlab/repos ]; then
-  cd ~/airlab/repos
+# Work laptop only
+if [ -d ~/airlab ]; then
+  [ -e ~/airlab/repos ] && cd ~/airlab/repos
+  export OPT_OUT_LINT_PRE_PUSH_HOOK=true
+  export CELL_AUTH_AWS_SSO=1
+
+  max_files_soft_limit=$(launchctl limit maxfiles | awk 'NR==1 { print $2 }')
+  if (( max_files_soft_limit <= 1000000 )); then
+    echo "Max files soft limit is too low. Running sudo launchctl limit maxfiles 1048576. Please type your Laptop password to run this command as root is required"
+    sudo launchctl limit maxfiles 1048576
+  fi
 fi
 
 # Node Version Manager configuration
@@ -47,18 +55,9 @@ alias axbrew="arch -x86_64 /usr/local/homebrew/bin/brew"
 # Ruby environment configuration
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
-# Development environment configurations
-export OPT_OUT_LINT_PRE_PUSH_HOOK=true
-
 # Android development environment setup
 export ANDROID_HOME=${HOME}/Library/Android/sdk
 export PATH=${PATH}:${ANDROID_HOME}/tools
 export PATH=${PATH}:${ANDROID_HOME}/platform-tools
 
-max_files_soft_limit=$(launchctl limit maxfiles | awk 'NR==1 { print $2 }')
-if (( max_files_soft_limit <= 1000000 )); then
-  echo "Max files soft limit is too low. Running sudo launchctl limit maxfiles 1048576. Please type your Laptop password to run this command as root is required"
-  sudo launchctl limit maxfiles 1048576
-fi
 export PATH="$HOME/.local/bin:$PATH"
-export CELL_AUTH_AWS_SSO=1
