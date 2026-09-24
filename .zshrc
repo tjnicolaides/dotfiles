@@ -65,3 +65,4 @@ if (( max_files_soft_limit <= 1000000 )); then
   sudo launchctl limit maxfiles 1048576
 fi
 export PATH="$HOME/.local/bin:$PATH"
+export CELL_AUTH_AWS_SSO=1

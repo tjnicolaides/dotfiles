@@ -5,6 +5,7 @@
 [core]
 	precomposeunicode = true
 	excludesfile = /Users/tj_nicolaides/.gitignore_global
+	fsmonitor = true
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
@@ -23,3 +24,5 @@
 	repo = /Users/tj_nicolaides/airlab/repos/apps
 [init]
 	defaultBranch = main
+[feature]
+	manyFiles = true

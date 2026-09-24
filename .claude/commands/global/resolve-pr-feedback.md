@@ -32,7 +32,7 @@ Follow these stages strictly in order:
 
 **Stage 3: Create TODO List**
 1. Re-order feedback by severity/impact assessment (highest first)
-2. Use TodoWrite tool to add TODOs for each item with severity/impact tags
+2. Write the ordered list into the response, tagging each item with severity/impact
 3. Group similar feedback items together where applicable
 
 **Stage 4: Interactive Triage**
