@@ -1,6 +1,6 @@
 ---
 name: google-docs-formatter
-description: Fix or apply native Google Docs formatting (headings, lists, tables, hyperlinks) through the Extended Google Drive MCP. Use when a Doc shows literal markdown ("[text](url)", "| a | b |"), blank rows between every block, or headings and paragraphs rendered as bullets, or when rebuilding a tab from markdown. Content-only; never runs a theme pass on docs TJ styled.
+description: Fix or apply native Google Docs formatting (headings, lists, tables, hyperlinks) through the Extended Google Drive MCP, or create a well-formatted new Doc through the claude.ai Google Drive connector. Use when a Doc shows literal markdown ("[text](url)", "| a | b |"), blank rows between every block, or headings and paragraphs rendered as bullets, or when rebuilding a tab from markdown. Content-only; never runs a theme pass on docs TJ styled.
 ---
 
 # Google Docs formatter
@@ -28,6 +28,20 @@ setup. The index-based approach still applies; the tools below are what exist he
 | Real table | `gdrive_doc_insert_table` with `data` and `location.endOfSegment` |
 
 All edit tools take `tabId` at call level. Omit it and you edit the first tab.
+
+## claude.ai Google Drive connector (`mcp__Google_Drive__*`)
+
+Cloud and claude.ai sessions usually have this connector instead of the tools above. It
+creates files but cannot edit a Doc's body: `update_file` changes only title and folder.
+The recipes below need the Extended MCP; this section is the whole workflow here.
+
+- New Doc: `create_file` with `contentMimeType: text/html` and the doc as HTML in
+  `textContent`. Drive converts it to a Google Doc. Use real `<h1>`-`<h3>`, `<table>`,
+  `<a href>` and nested `<ul>`; skip empty `<p>` (each becomes a blank row) and inline
+  styles. Folder: `parentId` from `search_files`.
+- Existing Doc: read with `read_file_content`. To change it, give TJ the edit, or create a
+  revised copy with `create_file` and link both. Never trash the original.
+- Verify: `download_file_content exportMimeType=text/html`, then run the Diagnose counts.
 
 ## Diagnose first
 
