@@ -96,17 +96,14 @@ a file chip as a plain link, date and dropdown chips as plain text. Consequences
 - To keep chips in a generated doc, put them in a hand-made block the routine never
   clears (for example a roster table with person chips at the top of the tab) and have the
   routine delete only from that table's endIndex to the tab end.
-- Reference docs that use chips well: A4RE Tech Spec Template
-  `1KZNHPvDhja5mt2CjCKIj9S8WceEv8ikvvo08ILI_PbQ` (owner lines, reviewer table with
-  person and status chips, file chips in a related-designs table), Flex Night Limits PRD
-  `1vd0TyX4ucqE5rARJL1coCgt_n59ZY6K4b2Pks_sedCQ` (header line PM | Eng | Status | Last
-  updated, RACI table, one tab per requirement surface).
+- Reference docs that use chips well, and the hand-styled docs the theme rule below
+  protects, are listed by id in `refs.local.md` next to this file (untracked; this repo
+  is public). Read it if it exists.
 
 ## Rules
 
-- Never `gdrive_doc_apply_theme` or `applyTheme: true` on docs TJ styled by hand
-  (IC checklist `1eY1HnnzhBjQ__frkA7bK3yaB7JUc0ASvrQsL5euvHhw`, prioritization tracker
-  `1pnWYYUVe2EYhBHrlSst3-mlJB2R0Wsf91JI1dWx2_Hk`). Content only.
+- Never `gdrive_doc_apply_theme` or `applyTheme: true` on docs TJ styled by hand (see
+  `refs.local.md`). Content only.
 - Tables through `gdrive_doc_insert_table` only. Markdown tables never convert on append.
 - Heading ids change on rebuild; deep links with `#heading=` break. Say so.
 - Multi-tab docs: `gdrive_update_file_content` replaces the whole file and loses tabs.
@@ -115,7 +112,7 @@ a file chip as a plain link, date and dropdown chips as plain text. Consequences
 
 ## Worked example
 
-2026-09-22: IC checklist and TJ prioritization tracker. Before: 123 empty paragraphs,
+2026-09-22: two hand-styled tracker docs. Before: 123 empty paragraphs,
 151 literal links, 16 headings inside `<li>`, one table as literal pipes. After Recipe 2 on
 six tabs: 0 literal links, 245 real links, only the mandatory trailing paragraph per tab,
-text identical per tab. The IC Current tab needed the human click in step 5.
+text identical per tab. One tab needed the human click in step 5.
