@@ -50,6 +50,10 @@ alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 alias claude='claude --dangerously-skip-permissions'
 airchat () {
   case "$1" in
+    -h|--help) ;;
+    ""|-*) set -- claude "$@" ;;
+  esac
+  case "$1" in
     claude)
       shift
       if (( ${@[(Ie)--]} )); then
