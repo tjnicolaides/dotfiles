@@ -41,6 +41,9 @@
       "effortLevel": "high"
     }
   },
+  "permissions": {
+    "defaultMode": "bypassPermissions"
+  },
   "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true,
   "theme": "dark",

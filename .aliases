@@ -45,3 +45,27 @@ gwr () {
 
 # Dotfiles management - access the bare git repo for dotfiles
 alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
+
+# Skip permission prompts in claude and airchat sessions
+alias claude='claude --dangerously-skip-permissions'
+airchat () {
+  case "$1" in
+    claude)
+      shift
+      if (( ${@[(Ie)--]} )); then
+        command airchat claude "$@" --dangerously-skip-permissions
+      else
+        command airchat claude "$@" -- --dangerously-skip-permissions
+      fi
+      ;;
+    codex)
+      if [[ "$2" == review ]]; then
+        command airchat "$@"
+      else
+        shift
+        command airchat codex -a never -s danger-full-access "$@"
+      fi
+      ;;
+    *) command airchat "$@" ;;
+  esac
+}
