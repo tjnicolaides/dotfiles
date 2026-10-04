@@ -4,7 +4,7 @@
 	enabled = true
 [core]
 	precomposeunicode = true
-	excludesfile = /Users/tj_nicolaides/.gitignore_global
+	excludesfile = ~/.gitignore_global
 	fsmonitor = true
 [filter "lfs"]
 	clean = git-lfs clean -- %f

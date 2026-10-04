@@ -10,7 +10,7 @@ This setup uses a Git bare repository stored in `~/.dotfiles` to track configura
 
 ```bash
 # Clone the bare repository
-git clone --bare https://github.com/USERNAME/dotfiles.git $HOME/.dotfiles
+git clone --bare https://github.com/tjnicolaides/dotfiles.git $HOME/.dotfiles
 
 # Define the alias in the current shell
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
@@ -37,13 +37,19 @@ dotfiles add .vimrc
 dotfiles commit -m "Add vimrc"
 ```
 
+### Claude Code cloud sessions
+
+claude.ai/code containers start with an empty `~/.claude`. Paste this into the cloud environment's setup script:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/tjnicolaides/dotfiles/main/.claude/scripts/cloud-bootstrap.sh | bash
+```
+
 ## Tracked Files
 - `.aliases` - Custom shell aliases
 - `.gitconfig` - Git configuration
 - `.gitignore_global` - Global Git ignore patterns
+- `.secrets.example` - Template for `~/.secrets-*` (sourced by `.zshrc`, never tracked)
 - `.zprofile`
-- `.zshrc` 
-
-
-
-
+- `.zshrc` - Work-laptop-only settings are gated on `~/airlab`
+- `.claude/` - Claude Code config: `CLAUDE.md`, `settings.json`, skills, agents, commands, writing voice

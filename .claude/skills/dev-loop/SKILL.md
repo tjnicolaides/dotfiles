@@ -7,7 +7,9 @@ allowed-tools: "*"
 
 # Dev Loop
 
-- spawn super coder to implement the ask, 1 thing at a time
-- then spawn code critic agent to review
+Agent names are subagents in `~/.claude/agents/`. If one isn't installed, spawn a general-purpose agent with that lens.
+
+- spawn super-coder to implement the ask, 1 thing at a time
+- then spawn code-critic to review
 - repeat until all work is complete
-- after the work loop completes have a final reviewer assess the output: if a game spawn game designer, if an app spawn product owner, or user may request a specific final reviewer agent
+- after the work loop completes have a final reviewer assess the output: if a game spawn game-designer, if an app spawn product-owner, or user may request a specific final reviewer agent

@@ -5,7 +5,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "cat \"$HOME/.claude/writing-rules.md\" 2>/dev/null || true",
+            "command": "[ -d \"$HOME/airlab\" ] && cat \"$HOME/.claude/writing-rules.md\" 2>/dev/null || true",
             "timeout": 5
           },
           {
