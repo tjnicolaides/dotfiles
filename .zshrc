@@ -67,3 +67,5 @@ fi
 export PATH="$HOME/.local/bin:$PATH"
 export CELL_AUTH_AWS_SSO=1
 alias helm='~/helm/helm'
+fpath=(~/.zfunc $fpath)
+autoload -Uz compinit && compinit
