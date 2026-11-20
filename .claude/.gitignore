@@ -46,3 +46,6 @@ skills/a4re-*/
 !rules/
 !scripts/
 !tj-writing-style.md
+
+# Machine-local notes referenced by tracked files
+*.local.md

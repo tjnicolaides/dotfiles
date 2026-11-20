@@ -1,6 +1,6 @@
 ---
 name: google-docs-formatter
-description: Fix or apply native Google Docs formatting (headings, lists, tables, hyperlinks) through the Extended Google Drive MCP. Use when a Doc shows literal markdown ("[text](url)", "| a | b |"), blank rows between every block, or headings and paragraphs rendered as bullets, or when rebuilding a tab from markdown. Content-only; never runs a theme pass on docs TJ styled.
+description: Fix or apply native Google Docs formatting (headings, lists, tables, hyperlinks) through the Extended Google Drive MCP, or create a well-formatted new Doc through the claude.ai Google Drive connector. Use when a Doc shows literal markdown ("[text](url)", "| a | b |"), blank rows between every block, or headings and paragraphs rendered as bullets, or when rebuilding a tab from markdown. Content-only; never runs a theme pass on docs TJ styled.
 ---
 
 # Google Docs formatter
@@ -28,6 +28,20 @@ setup. The index-based approach still applies; the tools below are what exist he
 | Real table | `gdrive_doc_insert_table` with `data` and `location.endOfSegment` |
 
 All edit tools take `tabId` at call level. Omit it and you edit the first tab.
+
+## claude.ai Google Drive connector (`mcp__Google_Drive__*`)
+
+Cloud and claude.ai sessions usually have this connector instead of the tools above. It
+creates files but cannot edit a Doc's body: `update_file` changes only title and folder.
+The recipes below need the Extended MCP; this section is the whole workflow here.
+
+- New Doc: `create_file` with `contentMimeType: text/html` and the doc as HTML in
+  `textContent`. Drive converts it to a Google Doc. Use real `<h1>`-`<h3>`, `<table>`,
+  `<a href>` and nested `<ul>`; skip empty `<p>` (each becomes a blank row) and inline
+  styles. Folder: `parentId` from `search_files`.
+- Existing Doc: read with `read_file_content`. To change it, give TJ the edit, or create a
+  revised copy with `create_file` and link both. Never trash the original.
+- Verify: `download_file_content exportMimeType=text/html`, then run the Diagnose counts.
 
 ## Diagnose first
 
@@ -96,17 +110,14 @@ a file chip as a plain link, date and dropdown chips as plain text. Consequences
 - To keep chips in a generated doc, put them in a hand-made block the routine never
   clears (for example a roster table with person chips at the top of the tab) and have the
   routine delete only from that table's endIndex to the tab end.
-- Reference docs that use chips well: A4RE Tech Spec Template
-  `1KZNHPvDhja5mt2CjCKIj9S8WceEv8ikvvo08ILI_PbQ` (owner lines, reviewer table with
-  person and status chips, file chips in a related-designs table), Flex Night Limits PRD
-  `1vd0TyX4ucqE5rARJL1coCgt_n59ZY6K4b2Pks_sedCQ` (header line PM | Eng | Status | Last
-  updated, RACI table, one tab per requirement surface).
+- Reference docs that use chips well, and the hand-styled docs the theme rule below
+  protects, are listed by id in `refs.local.md` next to this file (untracked; this repo
+  is public). Read it if it exists.
 
 ## Rules
 
-- Never `gdrive_doc_apply_theme` or `applyTheme: true` on docs TJ styled by hand
-  (IC checklist `1eY1HnnzhBjQ__frkA7bK3yaB7JUc0ASvrQsL5euvHhw`, prioritization tracker
-  `1pnWYYUVe2EYhBHrlSst3-mlJB2R0Wsf91JI1dWx2_Hk`). Content only.
+- Never `gdrive_doc_apply_theme` or `applyTheme: true` on docs TJ styled by hand (see
+  `refs.local.md`). Content only.
 - Tables through `gdrive_doc_insert_table` only. Markdown tables never convert on append.
 - Heading ids change on rebuild; deep links with `#heading=` break. Say so.
 - Multi-tab docs: `gdrive_update_file_content` replaces the whole file and loses tabs.
@@ -115,7 +126,7 @@ a file chip as a plain link, date and dropdown chips as plain text. Consequences
 
 ## Worked example
 
-2026-09-22: IC checklist and TJ prioritization tracker. Before: 123 empty paragraphs,
+2026-09-22: two hand-styled tracker docs. Before: 123 empty paragraphs,
 151 literal links, 16 headings inside `<li>`, one table as literal pipes. After Recipe 2 on
 six tabs: 0 literal links, 245 real links, only the mandatory trailing paragraph per tab,
-text identical per tab. The IC Current tab needed the human click in step 5.
+text identical per tab. One tab needed the human click in step 5.
