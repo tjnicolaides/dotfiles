@@ -48,6 +48,10 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 # For Intel x86_64 brew
 alias axbrew="arch -x86_64 /usr/local/homebrew/bin/brew"
 
+alias helm='~/helm/helm'
+fpath=(~/.zfunc $fpath)
+autoload -Uz compinit && compinit
+
 # Ruby environment configuration
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
@@ -66,6 +70,3 @@ if (( max_files_soft_limit <= 1000000 )); then
 fi
 export PATH="$HOME/.local/bin:$PATH"
 export CELL_AUTH_AWS_SSO=1
-alias helm='~/helm/helm'
-fpath=(~/.zfunc $fpath)
-autoload -Uz compinit && compinit
