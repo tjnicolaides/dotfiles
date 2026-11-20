@@ -42,7 +42,10 @@
     }
   },
   "permissions": {
-    "defaultMode": "bypassPermissions"
+    "defaultMode": "bypassPermissions",
+    "allow": [
+      "Bash(helm:*)"
+    ]
   },
   "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true,

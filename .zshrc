@@ -52,6 +52,10 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 # For Intel x86_64 brew
 alias axbrew="arch -x86_64 /usr/local/homebrew/bin/brew"
 
+alias helm='~/helm/helm'
+fpath=(~/.zfunc $fpath)
+autoload -Uz compinit && compinit
+
 # Ruby environment configuration
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 

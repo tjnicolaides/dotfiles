@@ -35,6 +35,13 @@ settings.local.json
 # Personal skills (not for dotfiles)
 skills/a4re-*/
 
+# Helm (installed by `helm agent-files`; regenerated per machine)
+helm/
+rules/helm.md
+skills/helm-*/
+skills/ml-review-docs/
+skills/tend-prs/
+
 # Always version these (explicit allowlist)
 !CLAUDE.md
 !settings.json
