@@ -1,3 +1,5 @@
 .DS_Store
 .secrets*
 !.secrets.example
+
+**/.claude/settings.local.json
