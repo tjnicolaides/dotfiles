@@ -100,7 +100,7 @@ bulleted, blank-row, literal-link doc this skill exists to fix.
 
 ## Smart chips (people, files, dates, dropdowns)
 
-The Docs API cannot create smart chips, and neither can any tool here. Reads are lossy:
+No tool here creates smart chips. The Docs API can insert person and date chips (`insertPerson`, `insertDate`) but file and dropdown chips have no API; see `gdoc-template-conform`. Reads are lossy:
 a person chip exports as `<a href="mailto:...">Name</a>` (markdown: `[Name](mailto:...)`),
 a file chip as a plain link, date and dropdown chips as plain text. Consequences:
 
